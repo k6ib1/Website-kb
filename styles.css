@@ -1,0 +1,101 @@
+/* Ensures the body uses a grid layout */
+body {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 60px 1fr; /* Sidebar starts collapsed to 60px */
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas: 
+        "navbar navbar" 
+        "sidebar main"  
+        "footer footer"; /* Sidebar at the left, main content next to it */
+    transition: all 0.3s ease;
+}
+
+/* Navbar styles */
+nav {
+    grid-area: navbar; /* Place in navbar grid area */
+    background-color: #333;
+    background-image: url(images/math_background.jpg);
+    color: white;
+    font-family: sans-serif;
+    padding: 1em;
+    text-shadow: 2px 2px 2px rgba(0,0,0,0.6);
+    font-weight: bold;
+    font-size: 1.5em;
+    position: relative;
+    z-index: 2 ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Sidebar styles */
+aside {
+    grid-area: sidebar; /* Place in sidebar grid area */
+    background-color: #333;
+    color: white;
+    height: 100vh;
+    width: 80px; /* Collapsed width */
+    overflow: hidden; /* Hide content when collapsed */
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: width 0.3s ease; /* Transition for smooth sidebar expansion */
+    z-index: 1000;
+}
+
+/* Sidebar content is centered */
+aside h2 {
+    text-align: center;
+    padding-top: 20px;
+    font-size: 18px;
+}
+
+/* Sidebar expands when hovered */
+aside:hover {
+    width: 250px; /* Expand width on hover */
+}
+
+/* Main content area styles */
+main {
+    grid-area: main; /* Place in main content grid area */
+    margin-left: 60px; /* Start aligned with the collapsed sidebar */
+    padding: 2em;
+    background-color: white;
+    transition: margin-left 0.3s ease;
+
+}
+
+/* Shift the main content when sidebar expands */
+aside:hover ~ main {
+    margin-left: 250px; /* Main content moves when the sidebar expands */
+}
+
+/* Footer styles */
+footer {
+    grid-area: footer; /* Place in footer grid area */
+    background-color: black;
+    color: white;
+    padding: 2em;
+}
+
+/* Reset margin and padding for all elements */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* Responsive layout: Keep sidebar collapsed even on smaller screens */
+@media (max-width: 800px) {
+    body {
+        grid-template-columns: 60px 1fr; /* Keep collapsed on small screens */
+    }
+    main {
+        margin-left: 60px; /* Same alignment for small screens */
+    }
+    aside:hover ~ main {
+        margin-left: 250px; /* Same expansion behavior */
+    }
+}
