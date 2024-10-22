@@ -1,20 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles.css') }}"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <title>CalcMaster</title>
-</head>
-<body>
+  </head>
+  <body>
     <nav>
-        <h1>CalcMaster</h1>
+      <a href="{{ url_for('home') }}" class="logo">CalcMaster</a>
+      <!-- Logo as a clickable link -->
+      <img class="logo_image" src="static/images/logo.webp" alt="" />
+    </nav>
+    <aside id="sidebar" class="sidebar">
+      <label class="wraper" for="sidebar-toggle">
+        <div class="switch-wrap">
+          <input type="checkbox" id="sidebar-toggle" />
+          <div class="switch"></div>
+        </div>
+      </label>
 
-    </nav> 
-    <aside>Sidebar</aside> <!-- Sidebar section -->
+      <button class="calc-button">
+        <a href="{{ url_for('graphs') }}" class="graph_message">Graphs</a>
+      </button>
+      <button class="calc-button2">2</button>
+    </aside>
     <main>
-         
+      <p>Welcome to CalcMaster</p>
     </main>
-    <footer>Footer</footer> <!-- Footer section -->
-</body>
+    <footer>Footer</footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const toggle = document.getElementById("sidebar-toggle");
+        const sidebar = document.getElementById("sidebar");
+
+        // Check local storage for sidebar state
+        if (localStorage.getItem("sidebarOpen") === "true") {
+          toggle.checked = true;
+          sidebar.classList.add("open"); // Add class to keep it open
+        }
+
+        toggle.addEventListener("change", function () {
+          if (this.checked) {
+            sidebar.classList.add("open"); // Add class to keep it open
+            localStorage.setItem("sidebarOpen", "true"); // Save state
+          } else {
+            sidebar.classList.remove("open"); // Remove class to collapse
+            localStorage.setItem("sidebarOpen", "false"); // Save state
+          }
+        });
+      });
+    </script>
+  </body>
 </html>
