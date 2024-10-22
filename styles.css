@@ -2,80 +2,142 @@
 body {
     min-height: 100vh;
     display: grid;
-    grid-template-columns: 60px 1fr; /* Sidebar starts collapsed to 60px */
+    grid-template-columns: 80px 1fr; /* Sidebar starts collapsed */
     grid-template-rows: auto 1fr auto;
     grid-template-areas: 
         "navbar navbar" 
         "sidebar main"  
-        "footer footer"; /* Sidebar at the left, main content next to it */
-    transition: all 0.3s ease;
+        "footer footer"; 
 }
 
 /* Navbar styles */
 nav {
-    grid-area: navbar; /* Place in navbar grid area */
+    grid-area: navbar; 
     background-color: #333;
+    object-fit: contain;
     background-image: url(images/math_background.jpg);
-    color: white;
-    font-family: sans-serif;
     padding: 1em;
-    text-shadow: 2px 2px 2px rgba(0,0,0,0.6);
-    font-weight: bold;
-    font-size: 1.5em;
-    position: relative;
-    z-index: 2 ;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 60px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.2);
+    
 }
+nav a {
+    color: white; /* Set text color */
+    font-family: sans-serif;
+    text-shadow: 2px 2px 2px rgba(0,0,0,0.6);
+    font-weight: bold;
+    font-size: 1.5em;
+    
+    
+    text-decoration: none; /* Remove underline */
+}
+
 
 /* Sidebar styles */
 aside {
-    grid-area: sidebar; /* Place in sidebar grid area */
+    grid-area: sidebar; 
     background-color: #333;
     color: white;
-    height: 100vh;
-    width: 80px; /* Collapsed width */
-    overflow: hidden; /* Hide content when collapsed */
-    position: fixed;
+    height: 100vh; 
+    width: 50px; 
+    overflow: hidden; 
+    position: fixed; 
     top: 0;
     left: 0;
-    transition: width 0.3s ease; /* Transition for smooth sidebar expansion */
+    transition: width 0.3s ease; 
     z-index: 1000;
 }
 
-/* Sidebar content is centered */
-aside h2 {
-    text-align: center;
-    padding-top: 20px;
-    font-size: 18px;
+/* Sidebar expands on hover */
+aside:hover {
+    width: 250px; 
 }
 
-/* Sidebar expands when hovered */
-aside:hover {
-    width: 250px; /* Expand width on hover */
+
+
+/* Sidebar buttons */
+aside .calc-button {
+    background-color: #4CAF50;
+    background-image: url(images/graphs.gif); 
+    opacity: 0.7;
+    filter: grayscale(40%);
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border: none;
+    color: rgb(255, 255, 255);
+    text-shadow: 2px 2px 2px rgba(0,0,0,0.6);
+    font-weight: bold;
+    padding: 15px 10px; /* Initial padding */
+    text-align: center;
+    text-decoration: none;
+    display: block; 
+    font-size: 22px;
+    margin: 13px 0; 
+    cursor: pointer;
+    border-radius: 5px; 
+    transition: width 0.3s ease, transform 0.3s ease; /* Smooth transition for width and scaling */
+    width: 100%; /* Full width of the sidebar */
 }
+
+/* Scale button on hover */
+aside .calc-button:hover {
+    transform: scale(1.1); 
+}
+
+aside .calc-button2 {
+    background-color: #4CAF50;
+    background-image: url(images/math_background.jpg); 
+    opacity: 0.7;
+    filter: grayscale(40%);
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border: none;
+    color: rgb(38, 35, 35);
+    text-shadow: 2px 2px 2px rgba(0,0,0,0.6);
+    font-weight: bold;
+    padding: 15px 10px; /* Initial padding */
+    text-align: center;
+    text-decoration: none;
+    display: block; 
+    font-size: 22px;
+    margin: 13px 0; 
+    cursor: pointer;
+    border-radius: 5px; 
+    transition: width 0.3s ease, transform 0.3s ease; /* Smooth transition for width and scaling */
+    width: 100%; /* Full width of the sidebar */
+}
+
+/* Scale button on hover */
+aside .calc-button2:hover {
+    transform: scale(1.1); 
+}
+
+
+
+
 
 /* Main content area styles */
 main {
-    grid-area: main; /* Place in main content grid area */
-    margin-left: 60px; /* Start aligned with the collapsed sidebar */
+    grid-area: main; 
     padding: 2em;
     background-color: white;
-    transition: margin-left 0.3s ease;
-
+    margin-left: 80px; 
+    height: 100vh; 
+    transition: margin-left 0.3s ease; 
 }
 
-/* Shift the main content when sidebar expands */
+/* Adjust main content position when sidebar expands */
 aside:hover ~ main {
-    margin-left: 250px; /* Main content moves when the sidebar expands */
+    margin-left: 250px;
 }
 
 /* Footer styles */
 footer {
-    grid-area: footer; /* Place in footer grid area */
+    grid-area: footer; 
     background-color: black;
     color: white;
     padding: 2em;
@@ -87,15 +149,12 @@ footer {
     padding: 0;
 }
 
-/* Responsive layout: Keep sidebar collapsed even on smaller screens */
+/* Responsive layout */
 @media (max-width: 800px) {
     body {
-        grid-template-columns: 60px 1fr; /* Keep collapsed on small screens */
+        grid-template-columns: 60px 1fr; 
     }
     main {
-        margin-left: 60px; /* Same alignment for small screens */
-    }
-    aside:hover ~ main {
-        margin-left: 250px; /* Same expansion behavior */
+        margin-left: 60px; 
     }
 }
