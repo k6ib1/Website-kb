@@ -22,7 +22,7 @@ main {
     height: calc(100vh - 200px); /* Adjust height to fit the sidebar and navbar */
 }
 
-/* Navbar styles */
+/* Navbar styles */ 
 nav {
     grid-area: navbar; 
     background-color: #444; /* Darker color for better contrast */
