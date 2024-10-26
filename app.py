@@ -1,3 +1,6 @@
+# run with "python app.py"
+
+
 import numpy as np
 from flask import Flask, render_template
 
